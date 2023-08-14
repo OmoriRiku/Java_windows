@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ja">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>お試し</title>
+		<style>
+			*, *::before, *::after {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+			body {
+				font-size: 16px;
+				color: #333;
+			}
+			a {
+				text-decoration: none;
+				color: #333;
+			}
+			.mb-30 {
+				margin-bottom: 30px;
+			}
+			.container {
+				max-width: 1024px;
+				margin: 0 auto;
+			}
+			.header {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+			}
+			.header-title {
+				padding: 0;
+				margin: 0;
+			}
+			.header-nav {
+				display: flex;
+			}
+			.header-nav_item {
+				list-style-type: none;
+				padding: 0 15px;
+			}
+			.main-wrapper {
+				display: flex;
+			}
+			.main {
+				width: 72%;
+			}
+			.aside {
+				width: 26%;
+			}
+		</style>
+	</head>
+	<body>
+		<header>
+			<div class="container">
+				<div class="header mb-30">
+					<h1 class="header-title"><a href="#">header</a></h1>
+					<nav>
+						<ul class="header-nav">
+							<li class="header-nav_item"><a href="#">link1</a></li>
+							<li class="header-nav_item"><a href="#">link2</a></li>
+							<li class="header-nav_item"><a href="#">link3</a></li>
+						</ul>
+					</nav>
+				</div>
+			</div>
+		</header>
+		<main>
+			<div class="container">
+				<div class="main-wrapper">
+					<div class="main">
+						<section>
+							<div>
+								main
+							</div>
+						</section>
+					</div>
+					<aside class="aside">
+						aside
+					</aside>
+				</div>
+			</div>
+		</main>
+		<footer></footer>
+	</body>
+</html>
