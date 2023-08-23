@@ -1,10 +1,15 @@
 class Main {
-	public static void main(String[] args) {
-		sample(new int[] {1, 2, 3});
+
+	String str;
+	int num;
+
+	Main() {
+		this.str = "hello";
+		this.num = 10;
 	}
-	static void sample(int[] array) {
-		for(int value : array) {
-			System.out.print(value);
-		}
+
+	public static void main(String[] args) {
+		Main m = new Main();
+		System.out.print(m.str);
 	}
 }
