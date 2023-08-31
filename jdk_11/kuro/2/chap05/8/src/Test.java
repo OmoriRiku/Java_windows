@@ -3,7 +3,9 @@ class Test {
 		String[][] array = {{"A", "B"}, {null}, {"C", "D"}};
 
 		for (String[] str : array) {
-			System.out.println(str);
+			for (String msg : str) {
+				System.out.println(msg);
+			}
 		}
 	}
 }
