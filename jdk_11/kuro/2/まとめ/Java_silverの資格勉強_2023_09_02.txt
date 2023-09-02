@@ -1,0 +1,82 @@
+static修飾子について
+
+「static領域」	staticで修飾されたフィールドやメソッド
+インスタンスを生成しなくてもアクセスできる。
+
+「ヒープ領域」	staticで修飾されていないフィールドやメソッド
+インスタンスを生成しなくてはアクセスできない
+
+staticなフィールドへのアクセス
+class Test {
+	static int num;
+}
+
+①Testクラスのstaticで修飾されたnumにアクセス。
+「クラス名.フィールド名」Test.num = 10;
+
+②インスタンスを生成して参照からアクセスする。
+Test t = new Test();
+t.num = 10;
+
+①②は同じ意味を持つため、同じnumの値を扱うことになる。
+
+
+staticなメソッドへのアクセス
+class Test {
+	static void hello() {
+		System.out.println("hello");
+	}
+}
+
+class Main {
+	public static void main(String[] args) {
+		Test.hello();		// ①
+		
+		Test t = new T();
+		t.hello();			// ②
+	}
+}
+①「クラス名.メソッド名(引数)」
+
+②インスタンス生成後であれば、「変数名.メソッド名（引数）」
+
+
+staticなメソッドからstaticでないフィールドやメソッドへはアクセスできない
+staticでないフィールドやメソッドはインスタンスを生成しなくてはならないため
+存在しないものを使う可能性がある
+
+class Test {
+	static void msg() {
+		test();	// NG
+	}
+
+	void test() {
+		System.out.println("hello");
+	}
+}
+
+staticでないメソッドからstaticなフィールドへアクセスすることができる
+staticで修飾されたものはインスタンスを生成する必要がないため
+
+class Test {
+	void msg() {
+		test();	// OK
+	}
+
+	static void test() {
+		System.out.println("hello");
+	}
+}
+
+static同士であればアクセスできる。
+どちらもインスタンスを生成する必要がないため
+
+class Test {
+	static void msg() {
+		test();	// OK
+	}
+
+	static void test() {
+		System.out.println("hello");
+	}
+}

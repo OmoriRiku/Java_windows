@@ -1,0 +1,76 @@
+コンストラクタのルール
+
+生成されたインスタンスがほかのインスタンスから使われる前に、事前準備を整える「前処理」
+
+・メソッド名をクラス名と同じにすること
+・戻り値型は記述できない
+・newと一緒にしか使えない（インスタンス生成時以外は呼び出しができない）
+・オーバーロードすることができる
+
+メソッド名をクラス名と同じにする
+class Test {
+
+	//	メソッド名をクラス名と同じにする
+	Test() {
+		System.out.println("hello");
+	}
+
+	//	オーバーロードすることが出来る。
+	Test(String str) {
+		System.out.println(str);
+	}
+
+	//	戻り値型を記述すると、コンストラクタではなくメソッドとして扱われる
+	void Test() {
+		System.out.println("hello");
+	}
+
+	public static void main(String[] args) {
+
+		// newと一緒にしか使えない（インスタンス生成時以外は呼び出しができない）
+		new Test();
+	}
+}
+
+初期化子とコンストラクタ
+初期化子はすべてのコンストラクタに対する前処理
+
+class Test {
+	//	コンストラクタより先に呼び出されるため、Aが先に表示される
+	{
+		System.out.println("A");
+	}
+	Test() {
+		System.out.println("B");
+	}
+
+	public static void main(String[] args) {
+		new Test();	//	A,B
+	}
+}
+
+デフォルトコンストラクタにも適用される
+class Test {
+	{
+		System.out.println("A");
+	}
+
+	public static void main(String[] args) {
+		new Test();	// Aが表示される
+	}
+}
+
+
+オーバーロードされた別のコンストラクタを呼び出すにはthis()を使用する
+class Test {
+	Test() {
+		this("hello");
+	}
+	Test(String str) {
+		System.out.println(str);
+	}
+
+	public static void main(String[] args) {
+		new Test();
+	}
+}
