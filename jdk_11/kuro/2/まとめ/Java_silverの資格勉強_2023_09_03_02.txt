@@ -1,0 +1,157 @@
+インタフェースについて
+インタフェースは、クラスから「型」だけを取り出したもの
+「扱い方」を決めるための情報
+
+扱い方の例 変数を宣言するときの型宣言など
+3の数値をint型で扱う
+int ans = 3;
+
+
+インタフェースで規定する抽象メソッドはすべてpublicであると解釈される。
+public interface Test {
+	//	コンパイラでpublicで修飾される
+	void hello();
+}
+
+
+インタフェースはインスタンス化することができない
+Test.java
+public interface Test {
+	void hello();
+}
+
+Main.java
+public class Main {
+	public static void main(String[] args) {
+		// インスタンス化できない。コンパイルエラー
+		new Test();
+	}
+}
+
+
+インタフェースを実現するクラスを用意することで、インスタンス化することが出来る。
+implements 実現する際のキーワード
+
+interface Test {
+	void hello();
+}
+
+//	インタフェースTestを実現する具象クラスA
+class A implements Test {
+
+	//	抽象メソッドはpublicであるため、publicで修飾しなければならない
+	public void hello() {
+		System.out.println("hello");
+	}
+}
+
+public class Main {
+	public static void main(String[] args) {
+		A a = new A();
+	}
+}
+
+
+クラスの多重継承はできないが、インタフェースの多重継承は出来る。
+
+クラスの多重継承
+class A {}
+
+class B {}
+
+class C extends A, B {}	// コンパイルエラー
+
+class Main {
+	public static void main(String[] args) {
+		new C();
+	}
+}
+
+インタフェースの多重継承
+インタフェースの多重継承をする際は、カンマ(,)で区切る
+interface A {}
+
+interface B {}
+
+class C implements A, B {}
+
+class Main {
+	public static void main(String[] args) {
+		new C();
+	}
+}
+
+
+インタフェースの抽象メソッドは実装を持つことが出来ない
+interface Test {
+	void hello() {}		//	コンパイルエラー
+}
+
+interface Test {
+	void hello();		//	OK
+}
+
+
+インタフェースは2つのルールを満たすフィールドであれば記述できる
+
+・finalを使って、動的に値が変更されないこと
+・staticを使って、インスタンスが生成できなくても使えること
+
+interface Test {
+	final int num1 = 10;
+	static int num2 = 20;
+}
+
+
+defaultメソッドを用いることで、抽象メソッドが実装をもつことができる
+interface Test {
+	default void hello() {
+		System.out.println("hello");
+	}
+}
+
+defaultメソッドはオーバーライドすることができる
+interface A {
+	default void hello() {
+		System.out.println("A");
+	}
+}
+
+interface B extends A {
+	default void hello() {
+		System.out.println("B");
+	}
+}
+
+class Test implements A, B {
+	public static void main(String[] args) {
+		Test t = new Test();
+		t.hello();	// Bが表示される
+	}
+}
+
+java.lang.Objectに登録されているtoStringメソッドはオーバーライドできない
+
+
+デフォルトメソッドを呼び出すには以下の構文を使う
+インタフェース名.super.メソッド名（）;
+
+interface A {
+	default void hello() {
+		System.out.println("hello");
+	}
+}
+
+class B implements A {
+	public void sample() {
+		A.super.hello();
+		System.out.println("Java");
+	}
+}
+
+class Test {
+	public static void main(String[] args) {
+		B b = new B();
+		b.sample();
+	}
+}

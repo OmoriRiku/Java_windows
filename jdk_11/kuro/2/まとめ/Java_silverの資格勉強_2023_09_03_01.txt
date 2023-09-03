@@ -1,0 +1,52 @@
+継承について
+継承をすることで、サブクラスはスーパークラスの特徴を引き継ぐ
+サブクラスのインスタンスは、スーパークラスのインスタンスと差分のインスタンスの両方で構成されている。
+
+class A {
+	private String name;
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getName() {
+		return this.name;
+	}
+}
+
+// extendsでA型を継承
+class B extends A {}
+
+class Test {
+	public static void main(String[] args) {
+		// B型でインスタンスを生成
+		B b = new B();
+
+		// A型のメソッドやフィールドを使用できる
+		b.setName("hello");
+		System.out.println(b.getName());
+	}
+}
+
+継承で引き継げないもの
+・コンストラクタ
+・privateで修飾されたフィールドやメソッド
+
+コンストラクタはインスタンスを生成する準備のためにある
+スーパークラスのコンストラクタはスーパークラスのインスタンスを生成するための準備のためであり、
+サブクラスとは別で考えなければいけない。
+
+class A {
+	A(String str) {
+		System.out.println(str);
+	}
+}
+
+class B extends A {}
+
+class Test {
+	public static void main(String[] args) {
+		// スーパークラスのコンストラクタのためコンパイルエラー
+		B b = new B("hello");
+	}
+}

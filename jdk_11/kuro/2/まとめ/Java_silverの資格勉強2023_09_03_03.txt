@@ -1,0 +1,54 @@
+抽象クラス
+
+インタフェースとクラスの両方の性質を持ったクラス
+抽象メソッドと具象メソッドの両方を持つことが出来る。
+
+抽象クラスに定義した
+具象メソッド → サブクラスが引き継ぐ
+抽象メソッド → サブクラスが実装を持つ
+
+abstract class A {
+	// 具象メソッド サブクラスが引き継ぐ
+	public void methodA() {
+		System.out.println("A");
+	}
+
+	//	抽象メソッド サブクラスが実装する
+	public abstract void methodB();
+}
+
+インスタンス化することが出来ない
+インタフェースの特徴を持っているため
+
+abstract class A {}
+
+class Test {
+	public static void main(String[] args) {
+		//	コンパイルエラー 抽象クラスのためインスタンスを生成できない
+		A a = new A();
+	}
+}
+
+抽象クラスから抽象クラスへの継承が出来る
+・元の抽象クラスの拡張
+・新たな抽象メソッドの定義
+
+abstract class A {}
+
+abstract class B extends A {}
+
+class C extends B {}
+
+class Test {
+	public static void main(String[] args) {
+		C c = new C();
+	}
+}
+
+フィールドを定義することが出来る。
+インタフェースでは定数しかフィールドに定義できない。
+
+abstract class A {
+	String str;
+	int num;
+}
