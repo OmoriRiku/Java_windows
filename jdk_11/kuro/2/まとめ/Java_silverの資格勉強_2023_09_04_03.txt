@@ -1,0 +1,32 @@
+フィールドとローカル変数が同じ名前の場合、ローカル変数が優先される
+
+class A {
+	int num = 10;
+
+	A() {
+		int num = 20;
+		System.out.println(num);
+	}
+}
+
+class Test {
+	public static void main(String[] args) {
+		new A();	// 20が表示
+	}
+}
+
+フィールドの値を使用する場合は、this.フィールド名を使用する
+class A {
+	int num = 10;
+
+	A() {
+		int num = 20;
+		System.out.println(this.num);
+	}
+}
+
+class Test {
+	public static void main(String[] args) {
+		new A();	// 10が表示
+	}
+}

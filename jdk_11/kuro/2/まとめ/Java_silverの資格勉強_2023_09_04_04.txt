@@ -1,0 +1,61 @@
+スーパークラスのコンストラクタ
+
+継承ではコンストラクタを引き継がない
+class A {
+	A(String str) {
+		System.out.println(str);
+	}
+}
+
+class B extends A {}
+
+class Test {
+	public static void main(String[] args) {
+		new B("hello");	//	コンパイルエラー
+	}
+}
+
+スーパークラスとサブクラスの両方にコンストラクタがある場合、先にスーパークラスのコンストラクタを呼び出さなければならない
+class A {
+	A() {
+		System.out.println("A");
+	}
+}
+
+class B extends A {
+	B() {
+		System.out.println("B");
+	}
+}
+
+class Test {
+	public static void main(String[] args) {
+		new B();	//	A, Bと表示
+	}
+}
+
+Bクラスのコンストラクタに暗黙的にsuper()が記述されるため
+Aクラスのコンストラクタに引数がある場合、Bクラスのコンストラクタ内のsuperで明示的に記述しなければならない
+class A {
+	A(String str) {
+		System.out.println(str);
+	}
+}
+
+class B extends A {
+	B(String str) {
+		super(str);
+	}
+}
+
+もしくは class B extends A {
+	B() {
+		super("hello");
+	}
+}
+
+class Test {
+	public static void main(String[] args) {
+		new B("hello");	//	helloと表示
+	}
+}

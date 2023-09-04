@@ -1,0 +1,86 @@
+ポリモーフィズムの問題
+
+・継承関係や実現関係にあるか
+・インスタンスを扱っている方に、「メソッドがあるかどうか」
+
+class A {
+	void hello() {
+		System.out.println("A");
+	}
+}
+
+class B extends A {
+	void test() {
+		System.out.println("B");
+	}
+}
+
+class Test {
+	public static void main(String[] args) {
+		A a = new B();
+		A b = new A();
+		a.test();	// ok
+		b.test(); // NG 	コンパイルエラー
+	}
+}
+
+A型の変数で宣言したaをB型で扱うにはキャスト演算子を使う
+
+class A {}
+
+class B extends A {
+	void test() {
+		System.out.println("test");
+	}
+}
+
+class Test {
+	public static void main(String[] args) {
+		A a = new B();
+		B b = (B) a;
+		b.test();
+	}
+}
+
+インスタンスの生成はどちらの型で生成しているか気を付けること。
+class A {
+	void test() {
+		System.out.println("hello");
+	}
+}
+
+class B extends A {
+	void test() {
+		System.out.println("test");
+	}
+}
+
+class Test {
+	public static void main(String[] args) {
+		A a = new A();	//	A型でインスタンスを生成。A型のフィールドとメソッドしか扱えない
+		B b = (B) a;
+		a.test();				//	実行時に例外スロー
+	}
+}
+
+------------------------------------------------------------------------------
+
+class A {
+	void test() {
+		System.out.println("hello");
+	}
+}
+
+class B extends A {
+	void test() {
+		System.out.println("test");
+	}
+}
+
+class Test {
+	public static void main(String[] args) {
+		A a = new B();	//	B型のインスタンスを生成。オーバーライドの記述に従う
+		B b = (B) a;
+		a.test();				//	testが表示
+	}
+}
