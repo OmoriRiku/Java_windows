@@ -1,0 +1,93 @@
+ラムダ式について
+
+インタフェースを実現するためには具象クラスが必ず一つは必要であった。
+その問題点を解消するためのものがラムダ式
+ラムダ式を用いることで動的に関数を扱うことが出来る。
+
+ラムダ式なし
+//	関数型インタフェースA
+interface A {
+	void hello(String name);
+}
+
+//	関数型インタフェースAの抽象メソッドを実現する具象クラスB
+class B implements A {
+	public void hello(String name) {
+		System.out.println("hello ," + name);
+	}
+}
+
+class Test {
+	public static void main(String[] args) {
+		B b = new B();
+		b.hello("Lambda");	//	 hello Lambdaと表示
+	}
+}
+
+ラムダ式を使用
+//	関数型インタフェースA
+interface A {
+	void hello(String name);
+}
+
+class Test {
+	public static void main(String[] args) {
+		//	ラムダ式を使用して関数型インタフェースAのhelloメソッドを実現
+		A a = (String name) -> {
+			System.out.println("hello, " + name);
+		};
+
+		//	呼び出し
+		a.hello("Lambda");
+	}
+}
+
+
+ラムダ式の構文
+(引数) -> { };
+
+ラムダ式の引数宣言と処理は一致させなければいけない。
+
+interface A {
+
+	//	メソッドで宣言された引数name
+	void hello(String name);
+}
+
+class Test {
+	public static void main(String[] args) {
+
+		//	ラムダ式の引数宣言
+		A a = (String name) {
+			
+			//	処理ブロックで変数を使用したい
+			System.out.println(name);
+		};
+	}
+}
+
+//	
+
+//	コンパイルエラー
+A a = (String name) { System.out.println(value); };
+
+ラムダ式の引数宣言に使用する型名は省略することが出来る
+どちらも使用することが出来る
+A a = (String name) -> { System.out.println(name); };
+A a = (name) -> { System.out.println(name);};
+
+引数を受け取らない場合、引数名を省略できる
+A a = () -> { System.out.println("hello"); };
+
+ラムダ式の宣言
+関数型インタフェースの型　変数名 = ( 引数 ) -> { 処理 };
+
+中カッコのありなしの特徴
+
+中カッコのあり
+複数の処理を記述できる。
+戻り値を戻すにはreturn文が必要
+
+中カッコなし
+1つしか処理は書けない
+戻り値を戻すにはreturnを省略
