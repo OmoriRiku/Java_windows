@@ -4,10 +4,11 @@ interface Function {
 
 class Test {
 	public static void main(String[] args) {
-		Function func = (String val) -> {
+		String val = "A";
+		Function f = (val) -> {
 			System.out.println(val);
 		};
 
-		func.test("hello");
+		f.test("B");
 	}
 }
