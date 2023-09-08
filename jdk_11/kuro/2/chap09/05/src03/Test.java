@@ -2,10 +2,9 @@ import java.util.function.Function;
 
 class Test {
 	public static void main(String[] args) {
-		Function<Integer, String> func = a -> {
-			return a + "です。";
+		Function<Integer, Boolean> function = (Integer num) -> {
+			return num == 1;
 		};
-
-		System.out.println(func.apply(2));
+		System.out.println(function.apply(1));
 	}
 }

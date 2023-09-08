@@ -2,7 +2,10 @@ import java.util.function.Consumer;
 
 class Test {
 	public static void main(String[] args) {
-		Consumer<Integer> c = a -> System.out.println(a + "です。");
-		c.accept(10);
+		Consumer<String> consumer = str -> {
+			System.out.println(str + "です。");
+		};
+
+		consumer.accept("consummer");
 	}
 }
