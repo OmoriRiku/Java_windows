@@ -1,16 +1,19 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 class Test {
 	public static void main(String[] args) {
-		A a = new A();
-		System.out.println(a.test("Lambda"));
-	}
+		Sample[] samples = {
+			new Sample(2, "B");
+			new Sample(3, "C");
+			new Sample(1, "A");
+		};
 
-	static class A implements Function {
-		public String test(String name) {
-			return "hello, " + name;
+		List<Sample> list = new ArrayList<Sample>(Arrays.asList(sample));
+		list.sort(new SampleComparator());
+		for (Sample s : list) {
+			System.out.println(s.getName());
 		}
-	}
-
-	static interface Function {
-		String test(String name);
 	}
 }

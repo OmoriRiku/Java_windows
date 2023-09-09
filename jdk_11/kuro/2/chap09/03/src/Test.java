@@ -1,14 +1,12 @@
-interface Function {
-	void test(String val);
-}
+import java.util.Arrays;
+import java.util.List;
 
 class Test {
 	public static void main(String[] args) {
-		String val = "A";
-		Function f = (val) -> {
-			System.out.println(val);
-		};
-
-		f.test("B");
+		List<Integer> list = Arrays.asList(new Integer[] {1, 2, 3});
+		list.sort((a, b) -> -a.compareTo(b));
+		for (Integer num : list) {
+			System.out.println(num);
+		}
 	}
 }

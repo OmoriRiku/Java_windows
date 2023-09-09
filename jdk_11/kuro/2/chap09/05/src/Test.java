@@ -1,11 +1,9 @@
-import java.util.function.Predicate;
+import java.time.LocalDate;
+import java.time.DayOfWeek;
 
 class Test {
 	public static void main(String[] args) {
-		Predicate<String> predicate = str -> {
-			return "a".equals(str);
-		};
-
-		System.out.println(predicate.test(args[0]));
+		LocalDate date1 = LocalDate.now();
+		System.out.println(date1);
 	}
 }
