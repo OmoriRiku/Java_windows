@@ -1,0 +1,35 @@
+9章 APIについて
+
+java.lang.Characterクラスのメソッド
+
+ラッパークラスとは、int型のIntegerクラスなど、プリミティブ型を扱うために用意されたクラス
+基本データ型をオブジェクトのように扱いたいときに使用する。
+
+char型のラッパークラスがCharacterクラス
+
+覚えておくべきメソッド
+isAlphabetic	アルファベットかどうか
+isDigit				数字かどうか
+isLowerCase		小文字かどうか
+すべて戻り値はboolean型
+
+
+日付と時刻を扱うメソッド
+Java SE8より追加された java.time.localDateクラス
+
+特徴
+immutable（不変）なオブジェクトである
+1から始まり、直感的に扱える
+日付を操作するための便利なメソッドがある
+
+of			日付を指定してインスタンスを生成
+LocalDate date1 = LocalDate.of(2023-9-9);
+System.out.println(date1);
+
+now			現在の日付
+LocalDate date1 = LocalDate.now();
+System.out.println(date1);
+
+parse		文字列をLocalDateクラスに変換
+LocalDate date1 = LocalDate.parse("2023-09-09");
+System.out.println(date1);

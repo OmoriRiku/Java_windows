@@ -1,0 +1,112 @@
+9章 APIについて
+
+https://docs.oracle.com/javase/jp/8/docs/api/java/util/Comparator.html
+
+Comparator
+関数型インタフェースであり、compareという抽象メソッドを一つだけ持っている。
+Collections.sortやArrays.sortなどに渡し、ソート順を制御することができる。
+
+compare
+int compare(T o1,
+            T o2)
+
+パラメータ:
+o1 - 比較対象の最初のオブジェクト。
+o2 - 比較対象の2番目のオブジェクト。
+
+戻り値:
+最初の引数が2番目の引数より小さい場合は負の整数、両方が等しい場合は0、最初の引数が2番目の引数より大きい場合は正の整数。
+
+o1 < 	o2  -1
+o1 == o2	0
+o1 > 	o2  1
+
+idを持つSampleクラスであれば、idを降順、昇順にソートすることができる。
+
+例（Sampleクラスのidの高い順にソートをする匿名クラス）
+class SampleComparator implements Comparator<Sample> {
+	@Override
+	public int compare(Sample s1, Sample s2) {
+		if (s1.getId() < s2.getId()) {
+			return 1;
+		}
+		if (s2.getId() < s1.getId()) {
+			return -1;
+		}
+		return 0;
+	}
+}
+
+//	Arrays.sortに渡してソートを実行する
+List<Sample> list = new ArrayList<Sample>(Arrays.asList(sample));
+list.sort(new SampleComparator());
+
+java.util.LIstインタフェースが持つsortメソッドはコレクション内の要素を順番に並び替えるためのメソッド
+Comparator型の引数を受け取る。
+
+
+
+import java.util.ArrayList;
+import java.util.List;
+
+class Item {
+	private int num;
+	private String name;
+	public Item(int num, String name) {
+		this.num = num;
+		this.name = name;
+	}
+	public int getNum() {
+		return this.num;
+	}
+	public String getName() {
+		return this.name;
+	}
+}
+
+// ラムダ式で記述
+class Test {
+	public static void main(String[] args) {
+		List<Item> list = new ArrayList<>();
+		list.add(new Item(3, "A"));
+		list.add(new Item(2, "B"));
+		list.add(new Item(1, "C"));
+
+		list.sort((Item i1, Item i2) -> {
+			if (i1.getNum() < i2.getNum()) {
+				return -1;
+			}
+			if (i1.getNum() > i2.getNum()) {
+				return 1;
+			}
+			return 0;
+		});
+
+		for (Item item : list) {
+			System.out.println(item.getNum() + ":" + item.getName());
+		}
+	}
+}
+
+(数値を自然順にソート)
+import java.util.Arrays;
+import java.util.List;
+import java.util.Comparator;
+
+// 匿名クラス（使用していない）
+class SampleComparator implements Comparator<Integer> {
+	@Override
+	public int compare(Integer a, Integer b) {
+		return a.compareTo(b);
+	}
+}
+
+class Test {
+	public static void main(String[] args) {
+		List<Integer> list = Arrays.asList(new Integer[] {3, 2, 1});
+		list.sort((a, b) -> a.compareTo(b));	// Comparatorのcompare抽象メソッドをラムダ式で記述
+		for (Integer num : list) {
+			System.out.println(num);
+		}
+	}
+}

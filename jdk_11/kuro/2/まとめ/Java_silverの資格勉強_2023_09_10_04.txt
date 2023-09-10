@@ -1,0 +1,40 @@
+9章 APIについて
+
+forEachメソッドとメソッド参照
+java.util.Listインタフェースのスーパーインタフェースであるjava.lang.IterableインタフェースにあるforEachデフォルトメソッドの使用例
+
+引数に関数型インタフェースConsumerを受け取る。
+Consumer 引数を受け取り、処理をする。結果は返さない
+
+関数型インタフェースなので、ラムダ式を使用することが出来る。
+List<String> list = List.of("A", "B", "C");
+list.forEach(str -> System.out.println(str));
+
+ラムダ式ではなくインナークラスで実装する
+Consumer<String> logic = new Consumer<String>() {
+	@Override
+	public void accept(String str) {
+		System.out.println(str);
+	}
+}
+
+メソッド参照で記述する
+List<String> list = new ArrayList<>(
+	Arrays.asList(new String[] {"A", "B", "C"})
+);
+list.forEach(System.out::println);
+
+メソッド参照について
+https://www.ne.jp/asahi/hishidama/home/tech/java/methodreference.html
+
+
+Map, HashMap
+
+Mapはインタフェースのためインスタンス化はできない 実装クラスHashMapなどで実装する
+Map<String, String> map = new HashMap<>();
+
+キーとバリューの組み合わせでコレクションを扱う
+
+キーの重複はできないが、バリューの重複は出来る
+
+値は追加する際はputメソッドを使用する。

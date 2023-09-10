@@ -1,0 +1,114 @@
+9章 APIについて
+
+Javaでは、何らかの集合のことをコレクションと呼ぶ
+
+ArrayList
+動的配列とも呼ばれ、コレクションを動的に扱うことが出来る。
+
+初期化と宣言
+ArrayList<型> list = new ArrayList<>();
+
+配列
+要素数が事前に決まっている。
+
+ArrayList
+要素数が動的に増える
+追加した順に並ぶ
+nullと重複を許容する
+
+ArrayList list = new ArrayList<>();
+型名を指定していないとオブジェクト型として扱われる
+どんな型の値でも入れることができてしまう。
+
+型が混在しないようにジェネリクスで指定する
+ArrayList<String> list = new ArrayList<>();
+String型のみ扱えるように制御している
+
+メソッド
+addメソッド			要素の追加を行う
+ArrayList<String> list = new ArrayList<>();
+list.add("A");
+list.add("B");
+list.add("C");
+
+list.add(5, "D");
+存在しない文字列を指定して追加しようとするとInddexOutOfBoundsExceptionをスローする
+
+setメソッド			指定された位置の文字を置き換える
+list.add("A");
+list.set(0, "B");	//	0番目の要素AをBに置き換え
+
+removeメソッド	指定された要素を削除する
+list.add("A");
+list.remove("A");	//	Aを削除
+removeメソッドは条件に一致した最初の要素を削除する
+要素を削除した場合、要素が一つ繰り上がる。
+
+
+
+固定長のリストを作成する
+要素を増やしたり減らしたりすることが出来ない
+
+ArraysクラスのasListメソッドをしようし、配列からリストのインスタンスを生成する
+var list = Arrays.asList(new Integer[] {1, 2, 3});
+
+Listインタフェースのofメソッドを使い、インスタンスを生成する
+var list = List.of(1, 2, 3);
+
+addやremoveを行うとUnsupportedOperationExceptionをスローする
+
+//	例外スロー
+list.add(4);
+for (Integer num : list) {
+	System.out.println(num);
+}
+
+
+Arraysクラス
+
+APIドキュメントなどで使い方を確認した方がいいメソッド
+
+asList		固定長のコレクションを作成する際に使用する
+var list = Arrays.asList(new Integer[] {1, 2, 3});
+
+compare		
+compareメソッドは2つの配列を辞書順に並べたときの並び順を比較する
+
+辞書順に並べば 	-1
+String[] a = {"A", "B"};
+String[] b = {"B", "A"};
+System.out.println(Arrays.compare(a, b));	//	-1
+
+逆であれば			1
+String[] a = {"B", "A"};
+String[] b = {"A", "B"};
+System.out.println(Arrays.compare(a, b));	//	1
+
+等しければ			0
+String[] a = {"A", "B"};
+String[] b = {"A", "B"};
+System.out.println(Arrays.compare(a, b));	//	0
+
+mismatch	引数で渡された2つの配列の要素を先頭から順番に比較し、一致しないインデックスを返す
+
+import java.util.Arrays;
+
+class Test {
+	public static void main(String[] args) {
+		int[] a = {1, 2, 3};
+		int[] b = {1, 2, 4};
+		System.out.println(Arrays.mismatch(a, b));		//	2が返ってくる
+	}
+}
+
+比較する二つの要素数が違う場合、一致しないインデックス番号を返す
+import java.util.Arrays;
+
+class Test {
+	public static void main(String[] args) {
+		int[] a = {1, 2, 3};
+		int[] b = {1, 2};
+		System.out.println(Arrays.mismatch(a, b));	//	2が返ってくる
+	}
+}
+
