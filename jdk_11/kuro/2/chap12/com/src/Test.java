@@ -1,10 +1,19 @@
+class A {
+	public void test() {
+		System.out.println("A");
+	}
+}
+
+class B extends A {
+	@Override
+	public void test() {
+		System.out.println("B");
+	}
+}
+
 class Test {
 	public static void main(String[] args) {
-		int a = 10;
-
-		if (a == 10)
-			System.out.println();
-		else
-			System.out.println();
+		A a = new A();
+		a.test();
 	}
 }
